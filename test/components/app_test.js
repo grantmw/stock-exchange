@@ -9,4 +9,10 @@ describe('App Component', () => {
 	it('should show a search bar', () => {
 		expect(component.find('.search-bar-container')).to.exist;
 	});
+	it('should show a list of stocks', () => {
+		expect(component.find('.stock-list-container')).to.exist;
+	});
+	it('should show a selected stock', () => {
+		expect(component.find('.active-stock-container')).to.exist;
+	});
 });
