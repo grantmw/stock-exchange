@@ -10,12 +10,29 @@ class SearchBar extends Component {
 	render() {
 		const { handleSubmit } = this.props
 		const searchTerm = this.props.fields.searchTerm;
+		let error;
+		if (this.props.failure) {
+			if (this.props.failure.hasOwnProperty('errorType')) {
+				if (this.props.failure.errorType === 'searchError') {
+					error = this.props.failure.message
+				}
+			}
+		}
 		return(
 			<div className="search-bar-container">
-				<form onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm))}>
+				<form onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm.toUpperCase()))}>
 					<div className="input-group">
-					  <span className="input-group-addon"><button type="submit">Search</button></span>
-					  <input type="text" autoComplete="off" className="form-control" placeholder="Enter Symbol" {...searchTerm} />
+						<span className="input-group-addon"><button type="submit">Search</button></span>
+						<input 
+							type="text" 
+							autoComplete="off" 
+							className="form-control search-input" 
+							placeholder="Enter Symbol" 
+							{...searchTerm} />
+					</div>
+					<div className="text-help">
+						{searchTerm.touched ? searchTerm.error : ""}
+						{error ? this.props.failure.message : ""}
 					</div>
 				</form>
 			</div>
@@ -31,6 +48,12 @@ function validate(values){
 	return errors;
 }
 
+function mapStateToProps(state) {
+	return {
+		failure: state.error
+	};
+}
+
 function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ getStock },dispatch);
 }
@@ -39,4 +62,4 @@ export default reduxForm({
 	form: 'SymbolSearch',
 	fields: ['searchTerm'],
 	validate,
-}, null, mapDispatchToProps)(SearchBar)
+}, mapStateToProps, mapDispatchToProps)(SearchBar)
