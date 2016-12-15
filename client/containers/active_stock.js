@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import { buyStock } from '../actions/index';
+import { sellStock } from '../actions/index';
 
 class ActiveStock extends Component {
 	
@@ -22,8 +24,8 @@ class ActiveStock extends Component {
 						<div className="text-help">
 							{quantityValue.touched ? quantityValue.error : ""}
 						</div>
-						<button>Buy</button>
-						<button>Sell</button>
+						<button type="submit" className="btn btn-primary" onClick={handleSubmit(formValues => this.props.buyStock(parseInt(formValues.quantityValue, 10), this.props.stock))}>Buy</button>
+						<button type="submit" className="btn btn-primary" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock))}>Sell</button>
 					</div>
 				</form>
 			</div>
@@ -55,7 +57,8 @@ function validate(values, props){
 
 function mapStateToProps(state) {
 	return {
-		stock: state.activeStock
+		stock: state.activeStock,
+		cash: state.cash
 	};
 };
 
@@ -63,4 +66,4 @@ export default reduxForm({
 	form: 'QuantityForm',
 	fields: ['quantityValue'],
 	validate
-}, mapStateToProps, null)(ActiveStock)
+}, mapStateToProps, { buyStock, sellStock })(ActiveStock)
