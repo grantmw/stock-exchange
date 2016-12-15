@@ -34,13 +34,13 @@ class ActiveStock extends Component {
 	render() {
 		if (!this.props.stock) {
 			return(
-				<div className="col-md-6">
+				<div className="col-md-2">
 					Select a Stock
 				</div>
 			);
 		}
 		return(
-			<div className="col-md-6">
+			<div className="col-md-2 active-stock-container">
 				{this.renderActiveStock()}
 			</div>
 		);

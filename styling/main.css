@@ -1,0 +1,43 @@
+.stock-list-container {
+	background-color: red
+}
+
+.active-stock-container {
+	background-color: red
+}
+
+.search-bar-container {
+	background-color: blue
+}
+
+* {
+	font-family: 'Open Sans Condensed', sans-serif;
+}
+
+.application-container {
+	margin: 60px auto;
+	text-align: center !important;
+	padding: 40px;
+	background-color: grey;	
+	max-width: 1200px;
+}
+
+
+
+/* Search Bar */
+
+.search-bar-container {
+	width: 40%;
+	display: block;
+	margin: auto;
+	margin-bottom: 10px;
+}
+
+.input-group-addon button {
+	background-color: Transparent;
+	background-repeat:no-repeat;
+	border: none;
+	cursor:pointer;
+	overflow: hidden;
+	outline:none;
+}

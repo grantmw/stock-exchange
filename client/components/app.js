@@ -6,10 +6,14 @@ import StockList from '../containers/stock_list';
 export default class App extends Component {
   render() {
     return (
-    	<div>
-	    	<SearchBar />
-	    	<StockList />
-	    	<ActiveStock />
+    	<div className="application-container">
+    		<div className="row">
+    			<div className="col-md-7 list-and-search">
+    				<SearchBar />
+	                <StockList />
+    			</div>
+                <ActiveStock />
+            </div>
     	</div>
     );
   }

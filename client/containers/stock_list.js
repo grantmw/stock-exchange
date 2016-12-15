@@ -46,7 +46,7 @@ class StockList extends Component {
 			);
 		}
 		return (
-			<div className="col-md-6 stock-list-container">
+			<div className="stock-list-container">
 				{this.props.cash}
 				<table className="table table-hover">
 					<thead>

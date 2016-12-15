@@ -11,15 +11,12 @@ class SearchBar extends Component {
 		const { handleSubmit } = this.props
 		const searchTerm = this.props.fields.searchTerm;
 		return(
-			<div className="search-bar-container col-sm-4">
-				<form className="" onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm))}>
-					<input 
-						placeholder="Enter Symbol"
-						autoComplete="off"
-						type="text"
-						className="form-control"
-						{...searchTerm} />
-					<button type="submit" className="btn btn-primary">Search</button>
+			<div className="search-bar-container">
+				<form onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm))}>
+					<div className="input-group">
+					  <span className="input-group-addon"><button type="submit">Search</button></span>
+					  <input type="text" autoComplete="off" className="form-control" placeholder="Enter Symbol" {...searchTerm} />
+					</div>
 				</form>
 			</div>
 		);
