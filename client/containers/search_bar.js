@@ -12,7 +12,7 @@ class SearchBar extends Component {
 		const searchTerm = this.props.fields.searchTerm;
 		return(
 			<div className="search-bar-container col-sm-4">
-				<form className="form-inline" onSubmit={handleSubmit(formValues => this.props.fetchStock(formValues.searchTerm))}>
+				<form className="form-inline" onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm))}>
 					<input 
 						placeholder="Enter Symbol"
 						autoComplete="off"
