@@ -67,8 +67,13 @@ class ActiveStock extends Component {
 
 function validate(values){
 	const errors = {};
-	if (values.quantityValue !== parseInt(values.quantityValue, 10)) {
+	console.log(typeof values.quantityValue)
+	console.log(isNaN(values.quantityValue))
+	if (isNaN(values.quantityValue)) {
 		errors.quantityValue = "Enter a valid quantity"
+	}
+	if (values.quantityValue % 1 != 0 ) {
+		errors.quantityValue = "Enter a whole number"		
 	}
 	if (values.quantityValue < 1) {
 		errors.quantityValue = "Enter a valid quantity"

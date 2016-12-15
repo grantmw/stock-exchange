@@ -47,7 +47,7 @@ class StockList extends Component {
 		}
 		return (
 			<div className="stock-list-container">
-				{this.props.cash}
+				{this.props.cash.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
 				<table className="table table-hover">
 					<thead>
 						<tr>

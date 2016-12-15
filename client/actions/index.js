@@ -13,32 +13,29 @@ export function getStock(symbol) {
 	const request = axios.get(url);
 
 	return 	(dispatch) => {
-					request
-					.then(({data}) => {
-						if (data.hasOwnProperty(symbol)) {
-							if (data.symbol !== 'error') {
-								dispatch({ 
-										type: GET_STOCK,
-										payload: data, 
-										symbol: symbol });
-								dispatch(reset('SymbolSearch'));
-								dispatch({ type: REMOVE_ERROR});
-							} else {
-								dispatch({ 
-										type: ADD_ERROR, 
-										payload: "searchError", 
-										message: "COULD NOT LOCATE STOCK" });
-							}
-						} else {
-							console.log("error - in getstock action")
-							dispatch({ 
-									type: ADD_ERROR, 
-									payload: "searchError", 
-									message: "COULD NOT LOCATE STOCK" });
-						}
-					});
-			};
-};
+		var dispatchError = () => { dispatch({ 
+							type: ADD_ERROR, 
+							payload: "searchError", 
+							message: "COULD NOT LOCATE STOCK" }); }
+		request
+		.then(({data}) => {
+			if (data.hasOwnProperty(symbol)) {
+				if (data.symbol !== 'error') {
+					dispatch({ 
+							type: GET_STOCK,
+							payload: data, 
+							symbol: symbol });
+					dispatch(reset('SymbolSearch'));
+					dispatch({ type: REMOVE_ERROR});
+				} else {
+					dispatchError();
+				}
+			} else {
+				dispatchError();
+			}
+		});
+	}
+}
 
 export function buyStock(quantity, stock, cash) {
 	const quantityAndStock = {
