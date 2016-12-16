@@ -52,7 +52,13 @@ body {
 	margin: auto;
 	margin-bottom: 10px;
 	height: 50px;
-	min-width: 250px;
+	min-width: 287.5px;
+}
+
+@media only screen and (max-width : 992px) {
+	.search-bar-container {
+		margin: 0;
+	}
 }
 
 .input-group-addon button {
@@ -74,7 +80,9 @@ body {
 	color: white;
 	padding: 0px !important;
 	width: 287.5px !important;
+	margin-bottom: 20px; 
 }
+
 
 .active-stock-container .form-control {
 	width: 70%;
@@ -92,6 +100,14 @@ body {
 	text-align: left;
 	padding-left: 0px !important;
 	padding-right: 0px !important;
+}
+
+.col-md-3 {
+	width: 33% !important;
+}
+
+.card-container {
+	margin: auto;
 }
 
 .name-row {
@@ -129,25 +145,25 @@ body {
 	font-size: 25px;
 }
 
-.bid-label {
-	display: table-cell;
-	width: 143px;
-	vertical-align: middle !important;
-}
-
 .ask-label {
 	display: table-cell;
 	width: 143px;
 	vertical-align: middle !important;
 }
 
-.bid-info {
+.bid-label {
+	display: table-cell;
+	width: 143px;
+	vertical-align: middle !important;
+}
+
+.ask-info {
 	display: table-cell;
 	border-right: 2px solid white;
 	width: 143px;
 }
 
-.ask-info {
+.bid-info {
 	display: table-cell;
 	width: 143px;
 }
@@ -196,8 +212,8 @@ body {
 }
 
 .list-and-search {
-	padding-right: 0px !important;
-}
+/*	padding-right: 0px !important;
+*/}
 
 th {
 	text-align: center !important;
@@ -216,6 +232,7 @@ th {
 	vertical-align: middle;
 	height: 160px;
 	margin: auto;
+	margin-top: 20px; 
 }
 
 .cash-container {
@@ -231,6 +248,7 @@ th {
 	width: 80%;
 	margin: auto;
 }
+
 
 .no-active-message {
 	margin: auto;

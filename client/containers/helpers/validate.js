@@ -1,7 +1,9 @@
+import _$ from 'jquery';
+
 export default function validate(values, props){
-	$('.buy-button, .sell-button').css({'pointer-events' : 'auto', 'opacity' : '1.0'});
-	$('.sell-error').html('');
-	$('.buy-error').html('');
+	_$('.buy-button, .sell-button').css({'pointer-events' : 'auto', 'opacity' : '1.0'});
+	_$('.sell-error').html('');
+	_$('.buy-error').html('');
 	const errors = {};
 	console.log(props)
 	let askPrice;
@@ -23,12 +25,12 @@ export default function validate(values, props){
 		errors.quantityValue = "Enter a whole number";		
 	}
 	if (props.cash < (askPrice * parseFloat(values.quantityValue)) ) {
-		$('.buy-button').css({'pointer-events' : 'none', 'opacity' : '0.5'});
-		$('.buy-error').html('Insufficient Assets');
+		_$('.buy-button').css({'pointer-events' : 'none', 'opacity' : '0.5'});
+		_$('.buy-error').html('Insufficient Assets');
 	} 
 	if (values.quantityValue > ownedQuantity) {
-		$('.sell-button').css({'pointer-events' : 'none', 'opacity' : '0.5'});
-		$('.sell-error').html('Do not have enough shares');
+		_$('.sell-button').css({'pointer-events' : 'none', 'opacity' : '0.5'});
+		_$('.sell-error').html('Do not have enough shares');
 	}
 	if (!values.quantityValue) {
 		errors.quantityValue = "Enter a quantity"

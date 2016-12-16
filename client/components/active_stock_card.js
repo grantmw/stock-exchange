@@ -12,18 +12,18 @@ export default (props) => {
 			</div>
 			<div className="info-high-row">
 				<div className="bid-label info-cell">
-					Bid Price
+					Ask Price
 				</div>
 				<div className="ask-label info-cell">
-					Ask Price
+					Bid Price
 				</div>
 			</div>
 			<div className="info-low-row">
-				<div className="bid-info info-cell">
-					${props.bidPrice}
-				</div>
 				<div className="ask-info info-cell">
-					${props.askPrice}
+					{props.askPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
+				</div>
+				<div className="bid-info info-cell">
+					{props.bidPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
 				</div>
 			</div>
 		</div>

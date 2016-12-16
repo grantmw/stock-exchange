@@ -31,7 +31,7 @@ export default class AssetChart extends Component {
             plotBackgroundColor: null,
             plotBorderWidth: 0,
             plotShadow: false,
-            margin: [0, 0, 0, 0],
+            margin: [30, 0, 0, 0],
             spacingTop: 0,
             spacingBottom: 0,
             spacingLeft: 0,
@@ -39,6 +39,7 @@ export default class AssetChart extends Component {
             backgroundColor:'transparent'
         },
         title: {
+        	text: '',
             align: 'center',
             verticalAlign: 'middle',
             y: 40,

@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form';
 import { buyStock } from '../actions/index';
 import { sellStock } from '../actions/index';
 import NoActiveStock from '../components/no_active_stock';
-import $ from 'jquery';
+import _$ from 'jquery';
 import ActiveStockCard from '../components/active_stock_card';
 import validate from './helpers/validate';
 
@@ -33,7 +33,7 @@ class ActiveStock extends Component {
 			);
 		} else {
 			return(
-				<div>
+				<div className="card-container">
 					<ActiveStockCard name={stock.name} symbol={stock.symbol} bidPrice={stock.bidPrice} askPrice={stock.askPrice} />
 					<form id="quanity-form">
 						<div className="form-group">
@@ -66,13 +66,13 @@ class ActiveStock extends Component {
 	render() {
 		if (!this.props.stock) {
 			return(
-				<div className="col-md-3 active-stock-container">
+				<div className="active-stock-container">
 					<NoActiveStock message="SEARCH FOR A STOCK TO GET STARTED" />
 				</div>
 			);
 		} else {
 			return(
-				<div className="col-md-3 active-stock-container">
+				<div className="active-stock-container">
 					{this.renderActiveStock()}
 				</div>
 			);
