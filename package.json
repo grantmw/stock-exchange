@@ -4,7 +4,9 @@
   "description": "A minimalist approach to getting your React/ Redux application off the ground as quickly as possible. ",
   "main": "index.js",
   "scripts": {
-    "start": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "start_dev": "node ./node_modules/webpack-dev-server/bin/webpack-dev-server.js",
+    "postinstall": "webpack -p",
+    "start": "node server.js",
     "test": "mocha --compilers js:babel-core/register --require ./test/test_helper.js --recursive ./test",
     "test:watch": "npm run test -- --watch"
   },
@@ -20,6 +22,7 @@
   "homepage": "https://github.com/grantmw/react-redux-starter-kit#readme",
   "dependencies": {
     "axios": "^0.15.3",
+    "express": "^4.14.0",
     "lodash": "^4.17.2",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",

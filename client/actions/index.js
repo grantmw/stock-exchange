@@ -8,7 +8,7 @@ export const ADD_ERROR = 'ADD_ERROR';
 export const REMOVE_ERROR = 'REMOVE_ERROR';
 
 export function getStock(symbol) {
-	const ROOT = "http://data.benzinga.com/rest/richquoteDelayed?symbols=";
+	const ROOT = "https://data.benzinga.com/rest/richquoteDelayed?symbols=";
 	const url = `${ROOT}${symbol}`;
 	const request = axios.get(url);
 
