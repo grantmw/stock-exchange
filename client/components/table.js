@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AssetChart from './asset_chart';
 
 export default class StockListTable extends Component {
 	constructor(props) {
@@ -7,10 +8,13 @@ export default class StockListTable extends Component {
 	}
 	renderStock(stockData) {
 		return(
-			<tr key={stockData.name}>
+			<tr key={stockData.stock.name} className="stock-list-row">
 				<td>
 					<div>
 						{stockData.stock.name}
+					</div>
+					<div className="stock-list-button">
+						<button onClick={() => this.props.retrieveStockInfo(stockData.stock.symbol)} className="btn btn-secondary"> View Stock </button>
 					</div>
 				</td>
 				<td>
@@ -20,9 +24,8 @@ export default class StockListTable extends Component {
 				</td>
 				<td>
 					<div>
-						${stockData.stock.bidPrice}
+						${stockData.stock.askPrice}
 					</div>
-					<button onClick={() => this.props.retrieveStockInfo(stockData.stock.symbol)} className="btn btn-secondary"> View Stock </button>
 				</td>
 			</tr>
 		);
@@ -35,8 +38,11 @@ export default class StockListTable extends Component {
 					<div className="cash-container">
 						Cash: {this.props.cash.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
 					</div>
+					<div className="asset-chart-container">
+						<AssetChart stocks={this.props.stocks} cash={this.props.cash} />
+					</div>
 				</div>
-				<table className="table table-hover">
+				<table className="table">
 					<thead>
 						<tr>
 							<th>Company</th>

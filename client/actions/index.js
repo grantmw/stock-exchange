@@ -13,7 +13,7 @@ export function getStock(symbol) {
 	const request = axios.get(url);
 
 	return 	(dispatch) => {
-		var dispatchError = () => { dispatch({ 
+		var inValidSearchDispatch = () => { dispatch({ 
 							type: ADD_ERROR, 
 							payload: "searchError", 
 							message: "COULD NOT LOCATE STOCK" }); }
@@ -28,11 +28,17 @@ export function getStock(symbol) {
 					dispatch(reset('SymbolSearch'));
 					dispatch({ type: REMOVE_ERROR});
 				} else {
-					dispatchError();
+					inValidSearchDispatch();
 				}
 			} else {
-				dispatchError();
+				inValidSearchDispatch();
 			}
+		})
+		.catch(({data}) => {
+			dispatch({
+				type: ADD_ERROR, 
+				payload: "httpError", 
+				message: "HTTP Error, Check Network Connection" });
 		});
 	}
 }
@@ -60,7 +66,7 @@ export function buyStock(quantity, stock, cash) {
 	}
 }
 
-export function sellStock(quantity, stock, cash) {
+export function sellStock(quantity, stock) {
 	const quantityAndStock = {
 		quantity: quantity,
 		stock: stock

@@ -21,13 +21,10 @@ class ActiveStock extends Component {
 		const { handleSubmit } = this.props;
 		const quantityValue = this.props.fields.quantityValue;
 		let searchError;
-		if (this.props.failure) {
-			if (this.props.failure.hasOwnProperty('errorType')) {
-				if (this.props.failure.errorType === 'searchError') {
-					searchError = this.props.failure.message
-				}
-			}
-		}
+		let { failure } = this.props;
+		if (failure && (failure.errorType ===  'searchError' || failure.errorType ===  'httpError')) {
+			searchError = this.props.failure.message
+		} 
 		if (searchError) {
 			return(
 				<div>
@@ -55,7 +52,7 @@ class ActiveStock extends Component {
 									<div className="buy-error"></div>
 								</div>
 								<div className="sell-col">
-									<button className="btn btn-primary sell-button" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Sell</button>
+									<button className="btn btn-primary sell-button" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock))}>Sell</button>
 									<div className="sell-error"></div>
 								</div>
 							</div>
