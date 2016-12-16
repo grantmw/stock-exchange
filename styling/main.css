@@ -1,28 +1,48 @@
-.stock-list-container {
-	background-color: red
-}
-
-.active-stock-container {
-	background-color: red
-}
-
-.search-bar-container {
-	background-color: blue
-}
-
 * {
 	font-family: 'Open Sans Condensed', sans-serif;
 }
 
+body {
+	background: linear-gradient(90deg, #14a7e2 10%, #0a5e80 90%);
+}
+
+/* Main */
+
 .application-container {
-	margin: 60px auto;
+	margin: -40px;
 	text-align: center !important;
 	padding: 40px;
-	background-color: grey;	
 	max-width: 1200px;
 }
 
+.content-container {
+	margin-top: 10px;
+}
 
+/* Header */
+.header-container {
+	text-align: left;
+	margin-left: -20px;
+	margin-top: 50px;
+}
+
+.header-logo {
+	height: 100px;
+	width: 100px;
+	display: inline-block;
+	float:left;
+}
+
+.title {
+	display: inline-block;
+	text-align: right;
+	font-weight: bold;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 30px;
+	line-height: 30px;
+	float: left;
+	margin-top: 5px;
+}
 
 /* Search Bar */
 
@@ -31,6 +51,8 @@
 	display: block;
 	margin: auto;
 	margin-bottom: 10px;
+	height: 50px;
+	min-width: 250px;
 }
 
 .input-group-addon button {
@@ -40,4 +62,168 @@
 	cursor:pointer;
 	overflow: hidden;
 	outline:none;
+}
+
+/* Active Stock */
+
+.active-stock-container {
+	margin-top: 60px;
+	height: 324px;
+	font-size: 14px;
+	background-color: #f28028;
+	color: white;
+	padding: 0px !important;
+	width: 287.5px !important;
+}
+
+.active-stock-container .form-control {
+	width: 70%;
+	margin: auto;
+	margin-top: 18px;
+}
+
+/* Active Stock Company Info*/
+
+.info-container {
+	height: 180px;
+	font-size: 20px;
+	background-color: #f28028;
+	color: white;
+	text-align: left;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+
+.name-row {
+	height: 50%;
+	width: 100%;
+	display: table;
+	table-layout: fixed;
+	vertical-align: middle !important;
+	background-color: black
+}
+
+.info-high-row {
+	width: 100%;
+	height: 25%;
+}
+
+.info-low-row {
+	height: 25%;
+	width: 100%;
+	border-top: 2px solid white;
+	display: table;
+	table-layout: fixed;
+	border-bottom: 2px solid white;
+}
+.info-cell {
+	text-align: center;
+	display: table-cell;
+	line-height: 29px;
+	display: block;
+}
+
+.company-name {
+	display: table-cell;
+	width: 230px;
+	font-size: 25px;
+}
+
+.bid-label {
+	display: table-cell;
+	width: 143px;
+	vertical-align: middle !important;
+}
+
+.ask-label {
+	display: table-cell;
+	width: 143px;
+	vertical-align: middle !important;
+}
+
+.bid-info {
+	display: table-cell;
+	border-right: 2px solid white;
+	width: 143px;
+}
+
+.ask-info {
+	display: table-cell;
+	width: 143px;
+}
+
+.button-row {
+	width: 100%;
+	border-top: 2px solid white;
+	display: table;
+	table-layout: fixed;
+	height: 72px;
+	color: #d80000;
+}
+
+.btn:focus,.btn:active {
+   outline: none !important;
+}
+
+.buy-col {
+	display: table-cell;
+	border-right: 2px solid white;
+	width: 143px;
+	padding-top: 10px;
+	font-size: 14px !important: 
+}
+
+.sell-col {
+	display: table-cell;
+	width: 143px;
+	padding-top: 10px;
+	font-size: 14px !important: 
+}
+
+.text-help {
+	font-size: 15px;
+	height: 20px;
+	color: #d80000;
+}
+
+/* Stock List */
+
+.stock-list-container {
+	font-size: 30px;
+	background-color: #2F4F4F;
+	color: white;
+	min-height: 324px;
+}
+
+.list-and-search {
+	padding-right: 0px !important;
+}
+
+th {
+	text-align: center !important;
+	text-transform: uppercase;
+	font-size: 20px;
+}
+
+.portfolio-container {
+	height: 110px;
+}
+
+.cash-container {
+	width: 225px;
+	float: right;
+}
+
+/* Active Stock - Not Selected */
+
+.no-active-stock-container {
+	width: 80%;
+	margin: auto;
+}
+
+.no-active-message {
+	margin: auto;
+	margin-top: 50px;
+	width: 200px;
+	font-size: 30px;
 }

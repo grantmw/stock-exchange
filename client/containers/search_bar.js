@@ -8,14 +8,13 @@ import { getStock } from '../actions/index';
 class SearchBar extends Component {
 
 	render() {
-		const { handleSubmit } = this.props
+		const { handleSubmit } = this.props;
 		const searchTerm = this.props.fields.searchTerm;
 		let error;
 		let { failure } = this.props;
 		if (failure && failure.errorType ===  'searchError') {
 			error = this.props.failure.message
 		} 
-								// {searchTerm.touched ? searchTerm.error : ""}
 		return(
 			<div className="search-bar-container">
 				<form onSubmit={handleSubmit(formValues => this.props.getStock(formValues.searchTerm.toUpperCase()))}>
@@ -29,7 +28,7 @@ class SearchBar extends Component {
 							{...searchTerm} />
 					</div>
 					<div className="text-help">
-						{error ? error : ""}
+						{error}
 					</div>
 				</form>
 			</div>

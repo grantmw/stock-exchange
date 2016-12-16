@@ -4,10 +4,19 @@ import { buyStock } from '../actions/index';
 import { sellStock } from '../actions/index';
 import NoActiveStock from '../components/no_active_stock';
 import $ from 'jquery';
+import ActiveStockCard from '../components/active_stock_card';
+import validate from './helpers/validate';
 
 class ActiveStock extends Component {
 	
 	renderActiveStock() {
+		$('#quanity-form').on('keyup keypress', function(e) {
+		  var keyCode = e.keyCode || e.which;
+		  if (keyCode === 13) { 
+		    e.preventDefault();
+		    return false;
+		  }
+		});
 		const stock = this.props.stock
 		const { handleSubmit } = this.props;
 		const quantityValue = this.props.fields.quantityValue;
@@ -22,42 +31,51 @@ class ActiveStock extends Component {
 		if (searchError) {
 			return(
 				<div>
-					{this.props.failure.message}
+					<NoActiveStock message={this.props.failure.message} />
 				</div>
 			);
 		} else {
 			return(
 				<div>
-					{stock.name} ({stock.symbol})
-					<div>
-						Bid: $ {stock.bidPrice} | Ask: $ {stock.askPrice}
-					</div>
-					<form>
+					<ActiveStockCard name={stock.name} symbol={stock.symbol} bidPrice={stock.bidPrice} askPrice={stock.askPrice} />
+					<form id="quanity-form">
 						<div className="form-group">
 							<input
 								type="text"
 								className="form-control quantity-input"
+								placeholder="Enter Share Quantity"
 								{...quantityValue}
 								/>
 							<div className="text-help">
 								{quantityValue.touched ? quantityValue.error : ""}
 							</div>
-							<button className="btn btn-primary" onClick={handleSubmit(formValues => this.props.buyStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Buy</button>
-							<button className="btn btn-primary" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Sell</button>
+							<div className="button-row">
+								<div className="buy-col">
+									<button className="btn btn-primary buy-button" onClick={handleSubmit(formValues => this.props.buyStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Buy</button>	
+									<div className="buy-error"></div>
+								</div>
+								<div className="sell-col">
+									<button className="btn btn-primary sell-button" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Sell</button>
+									<div className="sell-error"></div>
+								</div>
+							</div>
 						</div>
 					</form>
 				</div>
 			);
 		}
 	}
+	
 	render() {
 		if (!this.props.stock) {
 			return(
-				<NoActiveStock message="SELECT A STOCK"/>
+				<div className="col-md-3 active-stock-container">
+					<NoActiveStock message="SEARCH FOR A STOCK TO GET STARTED" />
+				</div>
 			);
 		} else {
 			return(
-				<div className="col-md-2 active-stock-container">
+				<div className="col-md-3 active-stock-container">
 					{this.renderActiveStock()}
 				</div>
 			);
@@ -65,30 +83,13 @@ class ActiveStock extends Component {
 	}
 };
 
-function validate(values){
-	const errors = {};
-	console.log(typeof values.quantityValue)
-	console.log(isNaN(values.quantityValue))
-	if (isNaN(values.quantityValue)) {
-		errors.quantityValue = "Enter a valid quantity"
-	}
-	if (values.quantityValue % 1 != 0 ) {
-		errors.quantityValue = "Enter a whole number"		
-	}
-	if (values.quantityValue < 1) {
-		errors.quantityValue = "Enter a valid quantity"
-	}
-	if (!values.quantityValue) {
-		errors.quantityValue = "Enter a quantity"
-	}
-	return errors
-};
 
 function mapStateToProps(state) {
 	return {
 		stock: state.activeStock,
 		cash: state.cash,
-		failure: state.error
+		failure: state.error,
+		stocks: state.stocks
 	};
 };
 

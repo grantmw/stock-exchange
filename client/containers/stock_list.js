@@ -2,40 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getStock } from '../actions/index'; 
+import StockListTable from '../components/table'; 
 
 class StockList extends Component {
-	constructor(props) {
-		super(props);
-		this.renderStock = this.renderStock.bind(this);
-	}
-
-	renderStock(stockData) {
-		const name = stockData.stock.name;
-		const quantity = stockData.quantity;
-		const paidPrice = stockData.stock.bidPrice;
-		const symbol = stockData.stock.symbol;
-
-		return(
-			<tr key={name}>
-				<td>
-					<div>
-						{name}
-					</div>
-				</td>
-				<td>
-					<div>
-						{quantity}
-					</div>
-				</td>
-				<td>
-					<div>
-						{paidPrice}
-					</div>
-						<button onClick={() => this.props.getStock(symbol)} className="btn btn-secondary"> View Stock </button>
-				</td>
-			</tr>
-		);
-	}
 
 	render() {
 		if (!this.props.stocks) {
@@ -47,19 +16,7 @@ class StockList extends Component {
 		}
 		return (
 			<div className="stock-list-container">
-				{this.props.cash.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}
-				<table className="table table-hover">
-					<thead>
-						<tr>
-							<th>Company</th>
-							<th>Shares</th>
-							<th>Price Paid</th>
-						</tr>
-					</thead>
-					<tbody>
-						{this.props.stocks.map(this.renderStock)}
-					</tbody>
-				</table>
+				<StockListTable stocks={this.props.stocks} cash={this.props.cash} retrieveStockInfo={this.props.getStock} />
 			</div>
 		);
 	}
