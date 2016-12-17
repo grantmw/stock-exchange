@@ -20,5 +20,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
 });
 
+
 app.listen(port);
 console.log('Server started');
