@@ -5,10 +5,9 @@ export default function(state = {}, action) {
 
 	switch(action.type) {
 		case ADD_ERROR:
-			console.log("in error reducer")
-			return Object.assign({}, state, { errorType: action.payload, message: action.message })
+			return Object.assign({}, state, { errorType: action.payload, message: action.message });
 		case REMOVE_ERROR:
-			return {}
+			return {};
 	}
 	return state;
 }

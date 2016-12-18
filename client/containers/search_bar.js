@@ -13,7 +13,7 @@ class SearchBar extends Component {
 		let error;
 		let { failure } = this.props;
 		if (failure && (failure.errorType ===  'searchError' || failure.errorType ===  'httpError')) {
-			error = this.props.failure.message
+			error = this.props.failure.message;
 		} 
 		return(
 			<div className="search-bar-container">

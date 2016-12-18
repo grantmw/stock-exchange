@@ -11,19 +11,36 @@ class ActiveStock extends Component {
 	
 	renderActiveStock() {
 		$('#quanity-form').on('keyup keypress', function(e) {
-		  var keyCode = e.keyCode || e.which;
-		  if (keyCode === 13) { 
-		    e.preventDefault();
-		    return false;
-		  }
+			var keyCode = e.keyCode || e.which;
+			if (keyCode === 13) { 
+				e.preventDefault();
+			return false;
+			}
 		});
-		const stock = this.props.stock
+		const { stock } = this.props;
 		const { handleSubmit } = this.props;
 		const quantityValue = this.props.fields.quantityValue;
+		const index = this.props.stocks.findIndex((item) => item.stock.symbol == stock.symbol);
+		let ownedQuantity = 0;
+		if (index !== -1) {
+			ownedQuantity = this.props.stocks[index].quantity;
+		}
+		let buyButtonClassNames = 'btn btn-primary buy-button';
+		let sellButtonClassNames = "btn btn-primary sell-button";
+		let buyButtonError = '';
+		let sellButtonError = '';
+		if (quantityValue && this.props.cash < (stock.askPrice * parseFloat(quantityValue.value))) {
+			buyButtonClassNames += ' disable-button';
+			buyButtonError = 'Insufficient Assets';
+		}
+		if (quantityValue && quantityValue.value > ownedQuantity) {
+			sellButtonClassNames += ' disable-button';
+			sellButtonError = 'Do not have enough shares';
+		}
 		let searchError;
 		let { failure } = this.props;
 		if (failure && (failure.errorType ===  'searchError' || failure.errorType ===  'httpError')) {
-			searchError = this.props.failure.message
+			searchError = this.props.failure.message;
 		} 
 		if (searchError) {
 			return(
@@ -48,12 +65,12 @@ class ActiveStock extends Component {
 							</div>
 							<div className="button-row">
 								<div className="buy-col">
-									<button className="btn btn-primary buy-button" onClick={handleSubmit(formValues => this.props.buyStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Buy</button>	
-									<div className="buy-error"></div>
+									<button className={buyButtonClassNames} onClick={handleSubmit(formValues => this.props.buyStock(parseInt(formValues.quantityValue, 10), this.props.stock, this.props.cash))}>Buy</button>	
+									<div className="buy-error">{buyButtonError}</div>
 								</div>
 								<div className="sell-col">
-									<button className="btn btn-primary sell-button" onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock))}>Sell</button>
-									<div className="sell-error"></div>
+									<button className={sellButtonClassNames} onClick={handleSubmit(formValues => this.props.sellStock(parseInt(formValues.quantityValue, 10), this.props.stock))}>Sell</button>
+									<div className="sell-error">{sellButtonError}</div>
 								</div>
 							</div>
 						</div>

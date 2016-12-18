@@ -14,11 +14,11 @@ export default class AssetChart extends Component {
 
 		if (stocks.length > 0) {
 			stocks.map(function(quantityStock) {
-				dataContainer.push([quantityStock.stock.symbol, (parseFloat(quantityStock.quantity) * parseFloat(quantityStock.stock.askPrice))])
-			})
+				dataContainer.push([quantityStock.stock.symbol, (parseFloat(quantityStock.quantity) * parseFloat(quantityStock.stock.askPrice))]);
+			});
 		}
-		dataContainer.push(['Cash', totalCash])
-		return dataContainer
+		dataContainer.push(['Cash', totalCash]);
+		return dataContainer;
 	}
 
 
@@ -70,22 +70,8 @@ export default class AssetChart extends Component {
             name: 'Browser share',
             innerSize: '50%',
             data: data
-            //[
-            //     ['Firefox',   0],
-            //     ['IE',       56.33],
-            //     ['Chrome', 24.03],
-            //     ['Safari',    4.77],
-            //     ['Opera',     0.91],
-            //     {
-            //         name: 'Proprietary or Undetectable',
-            //         y: 0.2,
-            //         dataLabels: {
-            //             enabled: false
-            //         }
-            //     }
-            // ]
         }]
-    }
+    };
 
 		return(
 			<div>

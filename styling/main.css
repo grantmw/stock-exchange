@@ -112,16 +112,19 @@ body {
 
 .name-row {
 	height: 50%;
-	width: 100%;
+	width: 287.5px;
 	display: table;
 	table-layout: fixed;
+	color: black;
+	font-weight: 900;
 	vertical-align: middle !important;
-	background-color: black
 }
 
 .info-high-row {
 	width: 100%;
 	height: 25%;
+	color: black;
+	font-weight: 900;
 }
 
 .info-low-row {
@@ -200,6 +203,11 @@ body {
 	font-size: 15px;
 	height: 20px;
 	color: #d80000;
+}
+
+.disable-button {
+	pointer-events: none;
+	opacity: 0.5;
 }
 
 /* Stock List */

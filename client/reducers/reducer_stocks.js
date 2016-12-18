@@ -4,7 +4,7 @@ import { SELL_STOCK } from '../actions/index';
 export default function(state = [], action) {
 	var index;
 	if ((action.type == BUY_STOCK) || (action.type == SELL_STOCK)) {
-		var index =  state.findIndex((item) => item.stock.symbol == action.payload.stock.symbol)
+		var index =  state.findIndex((item) => item.stock.symbol == action.payload.stock.symbol);
 	}
 	const update = (state, changes) => Object.assign({}, state, changes);
 	switch (action.type) {
