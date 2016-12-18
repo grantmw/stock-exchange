@@ -2,7 +2,7 @@
 # stock-exchange
 A small widget for viewing, buying, and selling stocks
 
-*Check the deployed version:* [here](https://grants-stock-exchange.herokuapp.com/)!
+__**Check the deployed version:**__ [here](https://grants-stock-exchange.herokuapp.com/)!
 
 ## About
 
