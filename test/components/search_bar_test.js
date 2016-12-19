@@ -4,12 +4,12 @@ import SearchBar from '../../client/containers/search_bar';
 describe('SearchBar Container', () => {
 	let component;
 	beforeEach(() => {
-		component = renderComponent(SearchBar);		
+		component = renderComponent(SearchBar);	
 	});
-	it('contains a form', () => {
+	it('contains an input form', () => {
 		expect(component.find('form')).to.exist;
 	});
-	it('has right class', () => {
+	it('rendered in the right place', () => {
 		expect(component).to.have.class('search-bar-container');
 	});
 });

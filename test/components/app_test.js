@@ -1,18 +1,18 @@
-import { renderComponent, expect } from '../test_helper';
+import { renderShallowComponent, renderComponent, expect } from '../test_helper';
 import App from '../../client/components/app';
 
 describe('App Component', () => {
 	let component;
 	beforeEach(() => {
-		component = renderComponent(App);
+		component = renderShallowComponent(App);
 	});
-	it('should show a search bar', () => {
-		expect(component.find('.search-bar-container')).to.exist;
+	it('contains the header component in (top) row', () => {
+		expect(component.props.children[0].props.className).to.equal('row header-row');
 	});
-	it('should show a list of stocks', () => {
-		expect(component.find('.stock-list-container')).to.exist;
-	});
-	it('should show a selected stock', () => {
-		expect(component.find('.active-stock-container')).to.exist;
+	it('has the application container', () => {
+		expect(component.props.className).to.equal('application-container');
+	});	
+	it('contains content components', () => {
+		expect(component.props.children[1].props.className).to.equal('row content-container');
 	});
 });
