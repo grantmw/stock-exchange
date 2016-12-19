@@ -9,7 +9,7 @@ class StockList extends Component {
 	render() {
 		if (!this.props.stocks) {
 			return(
-				<div>
+				<div className="stock-list-container">
 					You Have No Shares to View
 				</div>
 			);

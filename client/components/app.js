@@ -8,7 +8,7 @@ export default class App extends Component {
     render() {
         return (
         	<div className="application-container">
-                <div className="row">
+                <div className="row header-row">
                     <Header />
                 </div>
         		<div className="row content-container">

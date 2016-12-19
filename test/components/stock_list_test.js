@@ -1,15 +1,18 @@
-import { renderComponent, expect } from '../test_helper';
-import StockList from '../../client/components/table';
+import { renderShallowComponent, renderComponent, expect } from '../test_helper';
+import StockList from '../../client/containers/stock_list';
 
-describe('StockList', () => {
+describe('StockList Component', () => {
 	let component;
 	beforeEach(() => {
-		component = renderComponent(StockList);		
+		component = renderShallowComponent(StockList);
 	});
-	it('should exist', () => {
-		expect(component).to.have.class('.stock-list-container');
+	it('should have $100,000 before a purchase', () => {
+		expect(component.props.cash).to.equal(100000);
 	});
-	it('contains a table', () => {
-		expect(component.find('table')).to.exist;
+	it('should have no stocks before a purchase', () => {
+		expect(component.props.stocks.length).to.equal(0);
 	});
 });
+
+
+
